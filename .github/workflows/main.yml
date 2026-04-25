@@ -1,8 +1,14 @@
-name: CI-Check
+name: CI Unit Tests
 on: [pull_request]
+
 jobs:
-  test:
+  testes:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: python main.py
+      - name: Configurar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+      - name: Executar Testes
+        run: python -m unittest test_app.py
